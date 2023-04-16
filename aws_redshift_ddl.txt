@@ -1,0 +1,13 @@
+create table venue(
+	id smallint not null distkey sortkey,
+	name varchar(100),
+	city varchar(30),
+	state char(2),
+	seats integer
+	);
+
+copy venue from 's3://redshiftbucket13/input/venue_pipe.txt' 
+iam_role 'arn:aws:iam::681365143658:role/mynewredshiftfortest'
+delimiter '|' region 'us-east-1';
+
+select * from venue
